@@ -13,7 +13,36 @@ const projects = [
     github: "https://github.com/your-repo/reading-tracker-cli",
     liveDemo: "#",
   },
-  // Add other projects here
+  {
+    title: "Eco Home Guide",
+    description: "A user-friendly guide to eco-friendly home improvements.",
+    github: "https://github.com/your-repo/eco-home-guide",
+    liveDemo: "#",
+  },
+  {
+    title: "Expense Tracker",
+    description: "A React app for tracking expenses and budgets.",
+    github: "https://github.com/your-repo/expense-tracker",
+    liveDemo: "#",  
+  },
+  {
+    title: "Movie Character Explorer",
+    description: "This is a single-page application built using HTML, CSS, and JavaScript that allows users to explore and search for movie characters through a public API.",
+    github: "https://github.com",
+    liveDemo: "#"
+  },
+  {
+    title: "Textile waste recycling app",
+    description: "A React application that facilitates donations and collections of pre-owned items and offers a marketplace for eco-friendly products made from waste materials like plastics, glass, and textile scraps.",
+    github: "https://github.com",
+    liveDemo: "#"
+  },
+  {
+    title: "Turkana Tech Youths Hub Web application",
+    description: "Turkana Tech Youths Hub is a social enterprise committed to transforming the lives of youth in Turkana, Kenya, through hands-on skills training and sustainable development initiatives.",
+    github: "https://github.com",
+    liveDemo: "#"
+  }
 ];
 
 const Projects = () => {
