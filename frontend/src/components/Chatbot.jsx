@@ -9,17 +9,32 @@ const Chatbot = () => {
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
+    const getResponse = (userMessage) => {
+        const message = userMessage.toLowerCase();
+        if (message.includes('projects')) {
+          return "Here are the projects I've worked on:\n1. Becof Web App\n2. Reading Tracker CLI\n3. Eco Home Guide\n4. Expense Tracker\n5. Clicker Counter\n6. Textile Waste Recycling App\n7. Movie Character Explorer\n8. Turkana Tech Youths Hub.";
+        } else if (message.includes('skills')) {
+          return 'I have expertise in React, Node.js, JavaScript, HTML, CSS, and Tailwind CSS. Additionally, I have experience in building REST APIs and single-page applications.';
+        } else if (message.includes('contact')) {
+          return 'You can contact me via email at b3njaminbaya@gmail.com or WhatsApp at +254783797132. Alternatively, use the contact form on the website.';
+        } else if (message.includes('about')) {
+          return 'I am a full-stack developer trained at Moringa School. My passion lies in building user-centric applications that solve real-world problems.';
+        } else if (message.includes('github')) {
+          return 'You can view my GitHub repositories here: https://github.com/benjaminmweribaya';
+        } else {
+          return 'Sorry, I didn’t understand that. Try asking about my projects, skills, contact, or GitHub.';
+        }
+      };    
+
     const handleSend = () => {
         if (input.trim()) {
             setMessages((prev) => [...prev, { user: true, text: input }]);
             setTimeout(() => {
-                setMessages((prev) => [
-                    ...prev,
-                    { user: false, text: 'This is a chatbot response!' },
-                ]);
+              const botResponse = getResponse(input);
+              setMessages((prev) => [...prev, { user: false, text: botResponse }]);
             }, 1000);
             setInput('');
-        }
+          }
     };
 
     const handleDragStart = (e) => {
