@@ -32,13 +32,13 @@ const projects = [
     liveDemo: "#"
   },
   {
-    title: "Textile waste recycling app",
+    title: "Textile Waste Recycling App",
     description: "A React application that facilitates donations and collections of pre-owned items and offers a marketplace for eco-friendly products made from waste materials like plastics, glass, and textile scraps.",
     github: "https://github.com",
     liveDemo: "#"
   },
   {
-    title: "Turkana Tech Youths Hub Web application",
+    title: "Turkana Tech Youths Hub Donation Website",
     description: "Turkana Tech Youths Hub is a social enterprise committed to transforming the lives of youth in Turkana, Kenya, through hands-on skills training and sustainable development initiatives.",
     github: "https://github.com",
     liveDemo: "#"
