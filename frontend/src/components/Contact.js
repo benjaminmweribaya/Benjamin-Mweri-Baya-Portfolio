@@ -5,98 +5,135 @@ const Contact = () => {
     name: '',
     email: '',
     message: '',
-    attachment: null,
   });
+  const [attachments, setAttachments] = useState([]);
+  const [recaptchaToken, setRecaptchaToken] = useState('');
+  const [status, setStatus] = useState(null);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: files ? files[0] : value,
-    }));
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleFileChange = (e) => {
+    setAttachments([...e.target.files]);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // You can integrate with backend (e.g., API endpoint) here.
+
+    try {
+      // Get the reCAPTCHA token
+      const token = await window.grecaptcha.execute(
+        '6Lce4LQqAAAAAFIyrZz_NCGDx0rVKfgkLBhdG5rh',
+        { action: 'submit' }
+      );
+      setRecaptchaToken(token);
+
+      const formDataObj = new FormData();
+      formDataObj.append('name', formData.name);
+      formDataObj.append('email', formData.email);
+      formDataObj.append('message', formData.message);
+      formDataObj.append('recaptchaToken', token);
+
+      attachments.forEach((file, idx) =>
+        formDataObj.append(`attachments[${idx}]`, file)
+      );
+
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        body: formDataObj,
+      });
+
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        const errorData = await response.json();
+        setStatus(`error: ${errorData.message}`);
+      }
+    } catch (err) {
+      console.error('Error:', err);
+      setStatus('error: Something went wrong');
+    }
   };
 
   return (
-    <section id="contact" className="py-16 bg-gray-100">
-      <div className="container mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Contact Me</h2>
-        <form
-          onSubmit={handleSubmit}
-          className="max-w-xl mx-auto bg-white p-8 shadow-md rounded-lg"
-        >
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="message">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              maxLength="400"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="attachment">
-              Attachment
-            </label>
-            <input
-              type="file"
-              id="attachment"
-              name="attachment"
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded"
-              accept=".png,.jpg,.pdf,.doc,.docx"
-            />
-          </div>
-          <div className="mb-4">
-            <div className="g-recaptcha" data-sitekey="your-site-key"></div>
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-          >
-            Send Message
-          </button>
-        </form>
+    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+          Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
       </div>
-    </section>
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="message">
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          maxLength={800}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="attachments">
+          Attachments
+        </label>
+        <input
+          type="file"
+          id="attachments"
+          name="attachments"
+          onChange={handleFileChange}
+          multiple
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div className="mb-4">
+        <button
+          type="submit"
+          disabled={status === 'loading'}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          {status === 'loading' ? 'Sending...' : 'Send'}
+        </button>
+      </div>
+      {status && (
+        <p
+          className={`text-sm mt-2 ${status === 'success' ? 'text-green-500' : 'text-red-500'
+            }`}
+        >
+          {status === 'success'
+            ? 'Message sent successfully!'
+            : `Error: ${status}`}
+        </p>
+      )}
+    </form>
   );
 };
 
