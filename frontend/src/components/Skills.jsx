@@ -2,7 +2,26 @@ import React from 'react';
 
 const Skills = () => {
   const skills = [
-    "React", "JavaScript", "Node.js", "HTML", "CSS", "Tailwind CSS", "Express", "Git"
+    "React", 
+    "JavaScript", 
+    "Node.js", 
+    "HTML", 
+    "CSS", 
+    "Tailwind CSS", 
+    "Express", 
+    "Git", 
+    "MongoDB", 
+    "MySQL", 
+    "SQLite",
+    "PostgreSQL", 
+    "Python", 
+    "Django", 
+    "Flask", 
+    "Elasticsearch", 
+    "Redis", 
+    "AWS",
+    "Bootstrap",
+    "REST API",
   ];
 
   return (
