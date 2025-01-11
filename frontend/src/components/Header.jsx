@@ -5,12 +5,7 @@ const Header = () => {
     <header className="bg-gray-800 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <img
-            src="/path-to-your-headshot.jpg"
-            alt="Profile"
-            className="h-12 w-12 rounded-full mr-3"
-          />
-          <h1 className="text-lg font-bold">Benjamin Baya</h1>
+          <h1 className="text-lg font-bold">Benjamin Mweri Baya</h1>
         </div>
         <nav>
           <ul className="flex space-x-4">
