@@ -3,7 +3,7 @@ import headshot from '../assets/images/headshot.jpg';
 
 const About = () => {
   return (
-    <section className="py-10 bg-gray-100">
+    <section id="about" className="py-10 bg-gray-100">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
         <div className="mb-6 md:mb-0 md:mr-6">
           <img
