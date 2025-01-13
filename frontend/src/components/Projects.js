@@ -31,8 +31,8 @@ const projects = [
     liveDemo: "https://textile-waste-recycling-app.vercel.app"
   },
   {
-    title: "Turkana Tech Youths Hub Donation Website",
-    description: "Turkana Tech Youths Hub is a social enterprise committed to transforming the lives of youth in Turkana, Kenya, through hands-on skills training and sustainable development initiatives.",
+    title: "Turkana Tech Youths Hub",
+    description: "A donation React-based website for Turkana Tech Youths Hub CBO, that allows users to donate to various causes in the Turkana region through a user-friendly interface.",
     github: "https://github.com/benjaminmweribaya/turkana-tech-youths-hub",
     liveDemo: "https://www.turkanatechyouthshub.com"
   }
