@@ -137,17 +137,17 @@ const Chatbot = () => {
           </div>
         ))}
       </div>
-      <div className="p-2 border-t flex">
+      <div className="p-2 border-t flex flex-col gap-2">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="flex-1 p-2 border rounded-l"
+          className="w-full p-2 border rounded"
           placeholder="Type a message..."
         />
         <button
           onClick={handleSend}
-          className="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600"
+          className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600 w-full"
         >
           Send
         </button>
