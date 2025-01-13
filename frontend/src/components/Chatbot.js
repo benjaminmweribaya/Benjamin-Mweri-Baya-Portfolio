@@ -45,6 +45,28 @@ const Chatbot = () => {
     }
   };
 
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    const rect = chatbotRef.current.getBoundingClientRect();
+    setIsDragging(true);
+    setDragStart({ x: touch.clientX - rect.left, y: touch.clientY - rect.top });
+  };
+
+  const handleTouchMove = (e) => {
+    if (isDragging) {
+      const touch = e.touches[0];
+      const newX = Math.max(0, Math.min(window.innerWidth - chatbotRef.current.offsetWidth, touch.clientX - dragStart.x));
+      const newY = Math.max(0, Math.min(window.innerHeight - chatbotRef.current.offsetHeight, touch.clientY - dragStart.y));
+
+      setPosition({ x: newX, y: newY });
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+
   const handleDragStart = (e) => {
     const rect = chatbotRef.current.getBoundingClientRect();
     setIsDragging(true);
@@ -53,7 +75,10 @@ const Chatbot = () => {
 
   const handleDrag = (e) => {
     if (isDragging) {
-      setPosition({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y });
+      const newX = Math.max(0, Math.min(window.innerWidth - chatbotRef.current.offsetWidth, e.clientX - dragStart.x));
+      const newY = Math.max(0, Math.min(window.innerHeight - chatbotRef.current.offsetHeight, e.clientY - dragStart.y));
+
+      setPosition({ x: newX, y: newY });
     }
   };
 
@@ -80,6 +105,9 @@ const Chatbot = () => {
       onMouseMove={handleDrag}
       onMouseUp={handleDragEnd}
       onMouseLeave={handleDragEnd}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <div className="p-4 border-b bg-black text-white font-bold flex justify-between items-center">
         <span>Chat with Me</span>
