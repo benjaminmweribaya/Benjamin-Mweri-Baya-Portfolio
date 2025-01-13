@@ -3,45 +3,38 @@ import React from 'react';
 const projects = [
   {
     title: "Becof Web App",
-    description: "A React-based platform for sustainable farming resources and community.",
-    github: "https://github.com/your-repo/becof-web-app",
-    liveDemo: "#",
+    description: "An E-Commerce React-based platform with educational content and farming resources.",
+    github: "https://github.com/benjaminmweribaya/becof-web-app",
+    liveDemo: "https://becof-web-app.vercel.app",
   },
   {
     title: "Reading Tracker CLI",
     description: "A CLI tool for managing book collections and tracking reading progress.",
-    github: "https://github.com/your-repo/reading-tracker-cli",
-    liveDemo: "#",
+    github: "https://github.com/benjaminmweribaya/CLI-based-Reading-Tracker-Application",
   },
   {
     title: "Eco Home Guide",
     description: "A user-friendly guide to eco-friendly home improvements.",
-    github: "https://github.com/your-repo/eco-home-guide",
-    liveDemo: "#",
-  },
-  {
-    title: "Expense Tracker",
-    description: "A React app for tracking expenses and budgets.",
-    github: "https://github.com/your-repo/expense-tracker",
-    liveDemo: "#",  
+    github: "https://github.com/benjaminmweribaya/eco-home-guide-app",
+    liveDemo: "https://eco-home-guide-app.vercel.app",
   },
   {
     title: "Movie Character Explorer",
     description: "This is a single-page application built using HTML, CSS, and JavaScript that allows users to explore and search for movie characters through a public API.",
-    github: "https://github.com",
-    liveDemo: "#"
+    github: "https://github.com/benjaminmweribaya/movie-character-explorer",
+    liveDemo: "https://benjaminmweribaya.github.io/movie-character-explorer"
   },
   {
     title: "Textile Waste Recycling App",
     description: "A React application that facilitates donations and collections of pre-owned items and offers a marketplace for eco-friendly products made from waste materials like plastics, glass, and textile scraps.",
-    github: "https://github.com",
-    liveDemo: "#"
+    github: "https://github.com/benjaminmweribaya/textile-waste-recycling-app",
+    liveDemo: "https://textile-waste-recycling-app.vercel.app"
   },
   {
     title: "Turkana Tech Youths Hub Donation Website",
     description: "Turkana Tech Youths Hub is a social enterprise committed to transforming the lives of youth in Turkana, Kenya, through hands-on skills training and sustainable development initiatives.",
-    github: "https://github.com",
-    liveDemo: "#"
+    github: "https://github.com/benjaminmweribaya/turkana-tech-youths-hub",
+    liveDemo: "https://www.turkanatechyouthshub.com"
   }
 ];
 

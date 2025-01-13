@@ -16,12 +16,12 @@ const Skills = () => {
     "PostgreSQL", 
     "Python", 
     "Django", 
+    "Bottle",
     "Flask", 
-    "Elasticsearch", 
-    "Redis", 
-    "AWS",
+    "FastAPI",
     "Bootstrap",
     "REST API",
+    "Wordpress",
   ];
 
   return (
@@ -30,7 +30,7 @@ const Skills = () => {
         <h2 className="text-3xl font-bold text-center mb-8">My Skills</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {skills.map((skill, index) => (
-            <div key={index} className="p-4 bg-gray-100 text-center rounded-lg shadow-md">
+            <div key={index} className="p-4 bg-yellow-100 text-center rounded-lg shadow-md">
               {skill}
             </div>
           ))}
